@@ -10,6 +10,11 @@ import { Badge } from '~src/components/Badge/Badge';
 import { IconButton } from '~src/components/IconButton/IconButton';
 import { findArrayIndex, replaceItemAtIndex } from '~src/utils';
 import { BadgeColor } from '~src/components/Badge/types';
+import { io } from 'socket.io-client';
+
+const socket = io('http://localhost:2023/', {
+  transports: ['websocket', 'xhr-polling'],
+});
 
 export const KitchenPage = () => {
   const [restaurantOrders, setRestaurantOrders] = useState<Order[]>([]);
@@ -22,6 +27,18 @@ export const KitchenPage = () => {
       setRestaurantOrders(data.orders);
     };
     fetchOrders();
+  }, []);
+
+  useEffect(() => {
+    socket.on('newOrder', (order) => {
+      setRestaurantOrders((curr) => {
+        return [...curr, order];
+      });
+    });
+    return () => {
+      socket.off('newOrder');
+      socket.removeAllListeners();
+    };
   }, []);
 
   const handleDeleteOrder = async (order_id: string) => {
