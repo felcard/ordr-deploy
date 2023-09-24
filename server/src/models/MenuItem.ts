@@ -1,5 +1,15 @@
 import { Schema, model } from 'mongoose';
-import { MenuItem } from '@ordr/types';
+
+type MenuItem = {
+  _id: string;
+  category: Schema.Types.ObjectId;
+  name: string;
+  categoryId: string;
+  description: string;
+  price: number;
+  image_url: string;
+  createdAt: Date;
+};
 
 const menuItemSchema = new Schema<MenuItem>({
   name: {
@@ -7,7 +17,7 @@ const menuItemSchema = new Schema<MenuItem>({
     required: true,
   },
   category: {
-    type: String,
+    type: Schema.Types.ObjectId,
     required: true,
     ref: 'Category',
   },
