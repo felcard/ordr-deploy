@@ -18,3 +18,7 @@ declare module '*.gif' {
   const content: any;
   export default content;
 }
+declare module '~src/api-base-url.ts' {
+  const apiBaseUrl: string;
+  export default apiBaseUrl;
+}
