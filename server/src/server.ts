@@ -12,8 +12,15 @@ import userRoutes from './routes/userRoutes';
 import categoryRoutes from './routes/categoryRoutes';
 import menuRoutes from './routes/menuRoutes';
 import orderRouter from './routes/orderRoutes';
+import { createServer } from 'http';
+import { Server } from 'socket.io';
 
 const app = express();
+const server = createServer(app);
+const io = new Server(server);
+
+export { io };
+
 app.use(
   cors({
     origin: 'http://localhost:1234',
@@ -46,7 +53,7 @@ const runServer = async () => {
 
     const PORT = process.env.PORT || 2023;
 
-    app.listen(PORT, () => {
+    server.listen(PORT, () => {
       console.log(
         `Server is running in ${process.env.NODE_ENV} mode & listening on PORT ${PORT}`,
         `http://localhost:${PORT}`
