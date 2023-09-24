@@ -8,6 +8,7 @@ import { CardModal } from '~src/components/Modals/CardModal';
 import { basketState } from '~src/atoms';
 import { MenuItem } from '@ordr/types';
 import apiBaseUrl from '~src/api-base-url';
+console.log(`https://${apiBaseUrl}/api/menu-items`);
 
 export const MenuPage = (): JSX.Element => {
   const [selectedItem, setSelectedItem] = useState<MenuItem>();
@@ -15,7 +16,7 @@ export const MenuPage = (): JSX.Element => {
   const basket = useRecoilValue(basketState);
 
   const fetchMenu = async () => {
-    const res = await fetch(`http://${apiBaseUrl}/api/menu-items`);
+    const res = await fetch(`https://${apiBaseUrl}/api/menu-items`);
     const json = await res.json();
     return json;
   };
