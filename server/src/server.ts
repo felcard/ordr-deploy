@@ -23,7 +23,7 @@ export { io };
 
 app.use(
   cors({
-    origin: 'http://localhost:1234',
+    origin: '*',
   })
 );
 dotenv.config({ path: `${__dirname}/config/.env` });
