@@ -11,8 +11,9 @@ import { IconButton } from '~src/components/IconButton/IconButton';
 import { findArrayIndex, replaceItemAtIndex } from '~src/utils';
 import { BadgeColor } from '~src/components/Badge/types';
 import { io } from 'socket.io-client';
+import apiBaseUrl from '~src/api-base-url';
 
-const socket = io('http://localhost:2023/', {
+const socket = io(`http://${apiBaseUrl}/`, {
   transports: ['websocket', 'xhr-polling'],
 });
 
@@ -22,7 +23,7 @@ export const KitchenPage = () => {
 
   useEffect(() => {
     const fetchOrders = async () => {
-      const res = await fetch('http://localhost:2023/api/orders');
+      const res = await fetch(`http://${apiBaseUrl}/api/orders`);
       const data = await res.json();
       setRestaurantOrders(data.orders);
     };
@@ -42,7 +43,7 @@ export const KitchenPage = () => {
   }, []);
 
   const handleDeleteOrder = async (order_id: string) => {
-    const res = await fetch(`http://localhost:2023/api/orders/${order_id}`, {
+    const res = await fetch(`http://${apiBaseUrl}/api/orders/${order_id}`, {
       method: 'DELETE',
     });
     if (res.status === 200) {

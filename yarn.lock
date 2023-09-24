@@ -1466,6 +1466,7 @@
     "react-dom" "^18.2.0"
     "react-router-dom" "^6.15.0"
     "recoil" "^0.7.7"
+    "socket.io-client" "^4.7.2"
     "tailwind-merge" "^1.14.0"
 
 "@ordr/server@file:/home/felcard/CHingu/tests/ordr-deploy-24-09/server":
