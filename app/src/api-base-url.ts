@@ -1,2 +1,2 @@
-const apiBaseUrl = 'localhost:2023';
+const apiBaseUrl = 'ordr-be.onrender.com';
 export default apiBaseUrl;

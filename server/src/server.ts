@@ -23,7 +23,7 @@ export { io };
 
 app.use(
   cors({
-    origin: '*',
+    origin: 'https://ordr.onrender.com',
   })
 );
 dotenv.config({ path: `${__dirname}/config/.env` });
