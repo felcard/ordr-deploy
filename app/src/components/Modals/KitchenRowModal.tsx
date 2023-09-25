@@ -22,7 +22,7 @@ export const KitchenRowModal = ({
   onClose,
 }: KitchenRowModalProps): JSX.Element => {
   const handleUpdateOrderStatus = async (status: string) => {
-    const res = await fetch(`https://${apiBaseUrl}/api/orders/${order_id}`, {
+    const res = await fetch(`${apiBaseUrl}/api/orders/${order_id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ status }),

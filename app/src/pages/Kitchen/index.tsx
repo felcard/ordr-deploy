@@ -13,7 +13,7 @@ import { BadgeColor } from '~src/components/Badge/types';
 import { io } from 'socket.io-client';
 import apiBaseUrl from '~src/api-base-url';
 
-const socket = io(`https://${apiBaseUrl}/`, {
+const socket = io(`${apiBaseUrl}/`, {
   transports: ['websocket', 'xhr-polling'],
 });
 
@@ -23,7 +23,7 @@ export const KitchenPage = () => {
 
   useEffect(() => {
     const fetchOrders = async () => {
-      const res = await fetch(`https://${apiBaseUrl}/api/orders`);
+      const res = await fetch(`${apiBaseUrl}/api/orders`);
       const data = await res.json();
       setRestaurantOrders(data.orders);
     };
@@ -43,7 +43,7 @@ export const KitchenPage = () => {
   }, []);
 
   const handleDeleteOrder = async (order_id: string) => {
-    const res = await fetch(`https://${apiBaseUrl}/api/orders/${order_id}`, {
+    const res = await fetch(`${apiBaseUrl}/api/orders/${order_id}`, {
       method: 'DELETE',
     });
     if (res.status === 200) {

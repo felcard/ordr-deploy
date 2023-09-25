@@ -22,7 +22,7 @@ export const OrderPage = () => {
       subtotal: item.price * item.quantity,
     }));
 
-    await fetch(`https://${apiBaseUrl}/api/orders`, {
+    await fetch(`${apiBaseUrl}/api/orders`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
