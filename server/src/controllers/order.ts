@@ -17,8 +17,10 @@ export const createNewOrder = async (req: Request, res: Response) => {
       totalPrice: totalPrice,
     });
 
-    const storedOrder = (await order.save()).toObject();
-    io.emit('newOrder', storedOrder);
+    const storedOrder = await order.save();
+    await storedOrder.populate('items.category', 'name');
+
+    io.emit('newOrder', storedOrder.toObject());
 
     res.status(201).json({
       success: true,
